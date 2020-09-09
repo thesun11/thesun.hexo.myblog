@@ -102,7 +102,7 @@ theme: corazon
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: https://github.com/thesun11/thesun.hexo.myblog.git
-  branch: master
+# deploy:
+#   type: git
+#   repo: https://github.com/thesun11/thesun.hexo.myblog.git
+#   branch: master
