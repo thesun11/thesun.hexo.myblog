@@ -1,0 +1,2 @@
+# thesun.hexo.myblog
+hexo
