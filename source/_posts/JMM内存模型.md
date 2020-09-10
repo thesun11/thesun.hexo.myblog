@@ -1,3 +1,7 @@
+
+
+title: JMM内存模型
+
 # JMM内存模型
 
 ## 什么是Java内存模型？
@@ -30,11 +34,11 @@
 1. 通过给总线加锁
 2. 使用缓存一致性协议
 
-![640](/var/folders/_z/zm7jd8_503zbf12yjqljckf00000gn/T/com.yinxiang.Mac/WebKitDnD.gT1PCf/640.jpg)
+![wGazkT.jpg](https://s1.ax1x.com/2020/09/10/wGazkT.jpg)
 
 第1种方法虽然也达到了目的，但是在总线被锁住的期间，其他的CPU也无法访问主存，效率很低，所以就出现了缓存一致性协议即第2种方法，其中最出名的就是Intel的MESI协议，MESI协议保证每个CPU高速缓存中的变量都是一致的。它的核心思想是，当CPU写数据时候，如果发现操作的变量是共享变量(即其他CPU上也存在该变量)，就会发出信号通知其他CPU将它高速缓存中缓存这个变量的缓存行置为无效状态，因此当其他CPU需要读取这个变量时，发现自己高速缓存中缓存该变量的缓存行为无效状态，那么它就会从主存中重新读取。
 
-![640](/var/folders/_z/zm7jd8_503zbf12yjqljckf00000gn/T/com.yinxiang.Mac/WebKitDnD.sTkhnN/640.jpg)
+![wGdQcd.jpg](https://s1.ax1x.com/2020/09/10/wGdQcd.jpg)
 
 ## **处理器重排序问题**
 
@@ -60,9 +64,9 @@
 
 Java内存模型(Java Memory Model，JMM)即是Java语言对这个操作规范的遵循，JMM规定了所有的变量都存储在主存中，每个线程都有自己的工作区，线程将使用到的变量从主存中复制一份到自己的工作区，线程对变量的所有操作(读取、赋值等)都必须在工作区，不同的线程也无法直接访问对方工作区，线程之间的消息传递都需要通过主存来完成。可以把这里主存类比成计算机内存模型中的主存，工作区类比成计算机内存模型中的高速缓存。
 
-![640](/var/folders/_z/zm7jd8_503zbf12yjqljckf00000gn/T/com.yinxiang.Mac/WebKitDnD.XzMZ3y/640.jpg)
+![wGdd3Q.jpg](https://s1.ax1x.com/2020/09/10/wGdd3Q.jpg)
 
 而我们知道JMM其实是工作主存中的，Java内存模型中的工作区也是主存中的一部分，所以可以这样说Java内存模型解决的是内存一致性问题(主存和主存)而计算机内存模型解决的是缓存一致性问题(CPU高速缓存和主存)，这两个模型类似，但是作用域不一样，Java内存模型保证的是主存和主存之间的原子性、可见性、有序性，而计算机内存模型保证的是CPU高速缓存和主存之间的原子性、可见性、有序性。
 
-![640](/var/folders/_z/zm7jd8_503zbf12yjqljckf00000gn/T/com.yinxiang.Mac/WebKitDnD.ZKDDsb/640.jpg)
+[![wGd5uR.th.jpg](https://s1.ax1x.com/2020/09/10/wGd5uR.th.jpg)](https://imgchr.com/i/wGd5uR)
 
