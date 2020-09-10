@@ -2,7 +2,7 @@
 
 ## 什么是Java内存模型？
 
-![640](/var/folders/_z/zm7jd8_503zbf12yjqljckf00000gn/T/com.yinxiang.Mac/WebKitDnD.45A7ou/640.jpg)
+![wGUtqP.jpg](https://s1.ax1x.com/2020/09/10/wGUtqP.jpg)
 
 ### 要想深入了解Java并发编程，就要先理解好Java内存模型，而要理解Java内存模型又不得不从硬件、计算机内存模型说起
 
@@ -18,7 +18,7 @@
 
 上面的执行过程在单线程情况下并没有问题，但是在多线程情况下就会出现问题，因为CPU如果含有多个核心，则每个核心都有自己独占高速缓存，如果出现多个线程同时执行同一个操作，那么结果是无法预知。例如2个线程同时执行i++，假设i的初始值是0，那么我们希望2个线程执行完成之后i的值变为2，但是事实会是这样吗？
 
-![640](/var/folders/_z/zm7jd8_503zbf12yjqljckf00000gn/T/com.yinxiang.Mac/WebKitDnD.jlQAPi/640.jpg)
+![wGUBGQ.jpg](https://s1.ax1x.com/2020/09/10/wGUBGQ.jpg)
 
 可能出现的情况有：
 
