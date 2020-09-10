@@ -9,7 +9,7 @@ title: JMM内存模型
 
 ![wGUtqP.jpg](https://s1.ax1x.com/2020/09/10/wGUtqP.jpg)
 
-### 要想深入了解Java并发编程，就要先理解好Java内存模型，而要理解Java内存模型又不得不从硬件、计算机内存模型说起
+#### 要想深入了解Java并发编程，就要先理解好Java内存模型，而要理解Java内存模型又不得不从硬件、计算机内存模型说起
 
 ## **CPU执行过程**
 
@@ -69,5 +69,4 @@ Java内存模型(Java Memory Model，JMM)即是Java语言对这个操作规范�
 
 而我们知道JMM其实是工作主存中的，Java内存模型中的工作区也是主存中的一部分，所以可以这样说Java内存模型解决的是内存一致性问题(主存和主存)而计算机内存模型解决的是缓存一致性问题(CPU高速缓存和主存)，这两个模型类似，但是作用域不一样，Java内存模型保证的是主存和主存之间的原子性、可见性、有序性，而计算机内存模型保证的是CPU高速缓存和主存之间的原子性、可见性、有序性。
 
-[![wGd5uR.th.jpg](https://s1.ax1x.com/2020/09/10/wGd5uR.th.jpg)](https://imgchr.com/i/wGd5uR)
-
+[![wGB7Eq.jpg](https://s1.ax1x.com/2020/09/10/wGB7Eq.jpg)](https://imgchr.com/i/wGB7Eq)
