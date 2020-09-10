@@ -2,14 +2,9 @@
 title: JMM内存模型
 ---
 
-
-# JMM内存模型
-
-## 什么是Java内存模型？
+要想深入了解Java并发编程，就要先理解好Java内存模型，而要理解Java内存模型又不得不从硬件、计算机内存模型说起
 
 ![wGUtqP.jpg](https://s1.ax1x.com/2020/09/10/wGUtqP.jpg)
-
-#### 要想深入了解Java并发编程，就要先理解好Java内存模型，而要理解Java内存模型又不得不从硬件、计算机内存模型说起
 
 ## **CPU执行过程**
 
@@ -48,7 +43,14 @@ title: JMM内存模型
 例如：
 
 ```
-//线程1:``context = loadContext(); //语句1``inited = true; //语句2``//线程2:``while(!inited ){` `sleep()``}``doSomethingwithconfig(context);
+//线程1:
+context = loadContext(); //语句1
+inited = true; //语句2
+//线程2: 
+while(!inited ){
+	sleep()
+}
+doSomethingwithconfig(context);
 ```
 
 线程1由于处理器重排序，先执行性了语句2，那么此时线程2会认为context已经初始化完成，那么跳出循环，去执行doSomethingwithconfig(context)方法，实际上此时context并未初始化(即线程1的语句1还未执行)，而导致程序出错。
