@@ -16,14 +16,14 @@ menu_icons: #菜单icon
 show_count: true
 head_title:
   enable: true
-  title: HELLO, IM CORA
-  subtitle: 三流代码 & 一流Bug
+  title: welcome to the blog
+  subtitle: 李思敏的blog
 
 #footer
 footer:
   # 指定网站设置的日期
   # 如果没定义将会使用当前年份
-  since: 2017
+  since: 2020
 
   # Icon between year and copyright info.
   icon: user
