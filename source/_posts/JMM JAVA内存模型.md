@@ -1,10 +1,8 @@
 ---
-title: JMM内存模型
+title: JMM JAVA内存模型
 ---
 
 要想深入了解Java并发编程，就要先理解好Java内存模型，而要理解Java内存模型又不得不从硬件、计算机内存模型说起
-
-![wGUtqP.jpg](https://s1.ax1x.com/2020/09/10/wGUtqP.jpg)
 
 ## **CPU执行过程**
 
@@ -18,7 +16,7 @@ title: JMM内存模型
 
 上面的执行过程在单线程情况下并没有问题，但是在多线程情况下就会出现问题，因为CPU如果含有多个核心，则每个核心都有自己独占高速缓存，如果出现多个线程同时执行同一个操作，那么结果是无法预知。例如2个线程同时执行i++，假设i的初始值是0，那么我们希望2个线程执行完成之后i的值变为2，但是事实会是这样吗？
 
-![wGUBGQ.jpg](https://s1.ax1x.com/2020/09/10/wGUBGQ.jpg)
+![waYNGT.jpg](https://s1.ax1x.com/2020/09/12/waYNGT.jpg)
 
 可能出现的情况有：
 
@@ -30,11 +28,11 @@ title: JMM内存模型
 1. 通过给总线加锁
 2. 使用缓存一致性协议
 
-![wGazkT.jpg](https://s1.ax1x.com/2020/09/10/wGazkT.jpg)
+[![watpoq.jpg](https://s1.ax1x.com/2020/09/12/watpoq.jpg)](https://imgchr.com/i/watpoq)
 
 第1种方法虽然也达到了目的，但是在总线被锁住的期间，其他的CPU也无法访问主存，效率很低，所以就出现了缓存一致性协议即第2种方法，其中最出名的就是Intel的MESI协议，MESI协议保证每个CPU高速缓存中的变量都是一致的。它的核心思想是，当CPU写数据时候，如果发现操作的变量是共享变量(即其他CPU上也存在该变量)，就会发出信号通知其他CPU将它高速缓存中缓存这个变量的缓存行置为无效状态，因此当其他CPU需要读取这个变量时，发现自己高速缓存中缓存该变量的缓存行为无效状态，那么它就会从主存中重新读取。
 
-![wGdQcd.jpg](https://s1.ax1x.com/2020/09/10/wGdQcd.jpg)
+[![watmwR.jpg](https://s1.ax1x.com/2020/09/12/watmwR.jpg)](https://imgchr.com/i/watmwR)
 
 ## **处理器重排序问题**
 
@@ -67,8 +65,9 @@ doSomethingwithconfig(context);
 
 Java内存模型(Java Memory Model，JMM)即是Java语言对这个操作规范的遵循，JMM规定了所有的变量都存储在主存中，每个线程都有自己的工作区，线程将使用到的变量从主存中复制一份到自己的工作区，线程对变量的所有操作(读取、赋值等)都必须在工作区，不同的线程也无法直接访问对方工作区，线程之间的消息传递都需要通过主存来完成。可以把这里主存类比成计算机内存模型中的主存，工作区类比成计算机内存模型中的高速缓存。
 
-![wGdd3Q.jpg](https://s1.ax1x.com/2020/09/10/wGdd3Q.jpg)
+![waNmjg.jpg](https://s1.ax1x.com/2020/09/12/waNmjg.jpg)
 
 而我们知道JMM其实是工作主存中的，Java内存模型中的工作区也是主存中的一部分，所以可以这样说Java内存模型解决的是内存一致性问题(主存和主存)而计算机内存模型解决的是缓存一致性问题(CPU高速缓存和主存)，这两个模型类似，但是作用域不一样，Java内存模型保证的是主存和主存之间的原子性、可见性、有序性，而计算机内存模型保证的是CPU高速缓存和主存之间的原子性、可见性、有序性。
 
-[![wGB7Eq.jpg](https://s1.ax1x.com/2020/09/10/wGB7Eq.jpg)](https://imgchr.com/i/wGB7Eq)
+[![waanTs.jpg](https://s1.ax1x.com/2020/09/12/waanTs.jpg)](https://imgchr.com/i/waanTs)
+
